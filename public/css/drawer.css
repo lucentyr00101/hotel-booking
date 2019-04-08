@@ -1,0 +1,84 @@
+#menu {
+  position: fixed;
+  background-color: #222;
+  height: 100%;
+  z-index: 10;
+  width: 100%;
+  color: #333;
+  top: 0;
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+#menu ul {
+  list-style: none;
+  margin-top: 0;
+  padding: 0;
+}
+#menu ul li {
+  border-bottom: 1px solid #2a2a2a;
+}
+#menu ul li a {
+  color: #fff;
+  font-size: 14px;
+  display: block;
+  padding: 19px 0 19px 7px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+#menu ul li a.active + ul {
+  display: block;
+}
+#menu ul li ul {
+  margin-top: 0;
+  display: none;
+}
+#menu ul li ul li {
+  border-bottom: none;
+}
+#menu ul li ul a {
+  padding-left: 40px;
+  border-left: 4px solid #fff;
+}
+#menu ul li ul a:hover {
+  background-color: #1a1a1a;
+}
+#menu ul a i {
+  margin-right: 10px;
+  font-size: 16px;
+  margin-top: 3px;
+  width: 20px;
+}
+#menu ul a i[class*='fa-caret'] {
+  float: right;
+}
+#menu ul a:hover i:first-child {
+  color: #0284fe;
+}
+#menu > ul > li > a {
+  border-left: 4px solid #222;
+}
+#menu ul a:hover,
+#menu ul a.active {
+  background-color: #111;
+  border-left-color: #0284fe;
+  color: #0284fe;
+}
+.left {
+  left: -280px;
+}
+.show {
+  left: 0;
+}
+#showmenu {
+  margin-left: 100%;
+  position: absolute;
+  top: 0;
+  padding: 6px 10px 7px 10px;
+  font-size: 1.3em;
+  color: #fc3;
+  transition: all 0.3s ease;
+}
+#container {
+  padding: 50px;
+}

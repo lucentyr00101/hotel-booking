@@ -19,11 +19,25 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/mdb/mdb.min.css') }}">
+    <!-- Slidebars -->
+    <link rel="stylesheet" href="{{ asset('css/slidebars/slidebars.min.css') }}">
+    <!-- Global Custom Style -->
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <!-- Drawer -->
+    <link rel="stylesheet" href="{{ asset('css/drawer.css') }}">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="{{ asset('css/fontawesome/all.css') }}">
 </head>
 <body>
-    <div id="app">
+    @auth
+        @include('layouts.inc.slidebar')
+    @endauth
+    <div id="app" canvas="container">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
+            <div class="container-fluid">
+                @auth
+                    <button class="btn btn-primary p-3 button-collapse" id="toggleSidebar"><i class="fas fa-bars"></i></button>
+                @endauth
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -72,7 +86,6 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>
@@ -80,5 +93,9 @@
     <script type="text/javascript" src="{{ asset('js/mdb/jquery-3.3.1.min.js') }}"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ asset('js/mdb/mdb.min.js') }}"></script>
+    <!-- Slidebars -->
+    <script src="{{ asset('js/slidebars/slidebars.min.js') }}"></script>
+    <!-- Global Scripts -->
+    <script src="{{ asset('js/scripts.js') }}"></script>
 </body>
 </html>

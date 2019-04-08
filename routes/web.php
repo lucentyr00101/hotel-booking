@@ -18,3 +18,5 @@ Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('users', 'UserController');
+
+Route::resource('customers', 'CustomerController');
