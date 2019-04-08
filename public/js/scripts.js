@@ -100,7 +100,7 @@ $(function () {
   $('#toggleSidebar').on('click', function (event) {
     // Stop default action and bubbling
     event.stopPropagation();
-    event.preventDefault(); // Toggle the Slidebar with id 'id-1'
+    event.preventDefault(); // Toggle the Slidebar with id 'slidebar-1'
 
     controller.toggle('slidebar-1');
   }); //toggle dropdown of sidebar per menu item

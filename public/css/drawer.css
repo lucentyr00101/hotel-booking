@@ -38,6 +38,7 @@
 }
 #menu ul li ul a {
   padding-left: 40px;
+  padding-right: 10px;
   border-left: 4px solid #fff;
 }
 #menu ul li ul a:hover {

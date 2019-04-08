@@ -7,7 +7,7 @@ $(function() {
         event.stopPropagation();
         event.preventDefault();
     
-        // Toggle the Slidebar with id 'id-1'
+        // Toggle the Slidebar with id 'slidebar-1'
         controller.toggle('slidebar-1');
     });
 
