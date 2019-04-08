@@ -3,11 +3,15 @@
         <li>
             <a href="#" class="">Dashboard</a>
         </li>
-        <li>
+        <li><a href="{{ route('customers.create') }}"><i class="fas fa-credit-card"></i> Registration</a></li>
+        <li><a href="#"><i class="fas fa-credit-card"></i> Room List</a></li>
+        <li><a href="#"><i class="fas fa-credit-card"></i> Guest List</a></li>
+        <li><a href="#"><i class="fas fa-credit-card"></i> Check Out</a></li>
+        {{-- <li>
             <a href="#"><i class="fas fa-credit-card"></i> Test 1 <i class="fa fa-caret-down"></i></a>
             <ul>
                 <li><a href="#">Test 1.1</a></li>
             </ul>
-        </li>
+        </li> --}}
     </ul>
 </nav>

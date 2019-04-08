@@ -24,7 +24,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+
     }
 
     /**

@@ -36,7 +36,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container-fluid">
                 @auth
-                    <button class="btn btn-success" id="toggleSidebar">Toggle</button>
+                    <button class="btn btn-primary p-3 button-collapse" id="toggleSidebar"><i class="fas fa-bars"></i></button>
                 @endauth
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
