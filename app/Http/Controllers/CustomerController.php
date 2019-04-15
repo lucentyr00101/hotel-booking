@@ -36,6 +36,16 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'first_name'      => 'required',
+            'last_name'       => 'required',
+            'birthday'        => 'required',
+            'contact_number'  => 'required',
+            'mailing_address' => 'required',
+            'email_address'   => 'required',
+            'guest_type'      => 'required'
+        ]);
+
         $customer                  = new Customer;
         $customer->first_name      = $request->first_name;
         $customer->middle_initial  = $request->middle_initial;
@@ -82,6 +92,16 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
+        $request->validate([
+            'first_name'      => 'required',
+            'last_name'       => 'required',
+            'birthday'        => 'required',
+            'contact_number'  => 'required',
+            'mailing_address' => 'required',
+            'email_address'   => 'required',
+            'guest_type'      => 'required'
+        ]);
+        
         $customer->first_name      = $request->first_name;
         $customer->middle_initial  = $request->middle_initial;
         $customer->last_name       = $request->last_name;
