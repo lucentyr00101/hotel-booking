@@ -14,7 +14,7 @@
             <div class="col-xl-12">
                 <div class="table-responsive">
                     <table class="table table-striped white-text">
-                        <thead>
+                        <thead style="text-transform: uppercase;">
                             <tr>
                                 <th>ID</th>
                                 <th>First Name</th>
@@ -45,12 +45,17 @@
                                     <td>{{ $customer->type_of_guest }}</td>
                                     <td>{{ $customer->created_at->format('F d, Y') }}</td>
                                     <td>
-                                        <a href="{{ route('customers.show', ['id' => $customer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ route('customers.edit', ['id' => $customer->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                        {{ Form::open(['url' => route('customers.destroy', ['id' => $customer->id]), 'method' => 'post', 'class' => 'd-inline']) }}
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-danger btn-sm m-0"><i class="fas fa-trash"></i></button>
-                                        {{ Form::close() }}
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <a href="{{ route('customers.show', ['id' => $customer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ route('customers.edit', ['id' => $customer->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                            {{ Form::open(['url' => route('customers.destroy', ['id' => $customer->id]), 'method' => 'post', 'class' => 'd-inline']) }}
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger btn-sm m-0"><i class="fas fa-trash"></i></button>
+                                            {{ Form::close() }}
+                                        </div>
+                                        <div>
+                                            <a href="#" class="btn btn-success btn-sm btn-block">Assign to a room</a>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty
