@@ -9,9 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -27,6 +24,10 @@
     <link rel="stylesheet" href="{{ asset('css/drawer.css') }}">
     <!-- Fontawesome -->
     <link rel="stylesheet" href="{{ asset('css/fontawesome/all.css') }}">
+    <!-- JQuery UI CSS -->
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
+    <!-- JQuery UI Theme -->
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.theme.min.css') }}">
 </head>
 <body>
     @auth
@@ -36,16 +37,37 @@
         @auth
             @include('layouts.inc.navbar')
         @endauth
-        <main class="py-4">
+        <main class="p-3">
+
+            @if (session()->has('success'))
+                <div class="alert alert-success">
+                    <div class="alert-title"><strong>Success!</strong></div>
+                    {{ session()->get('success') }}
+                </div>
+            @elseif(session()->has('error'))
+                <div class="alert alert-danger">
+                    <div class="alert-title"><strong>Error!</strong></div>
+                    {{ session()->get('error') }}
+                </div>
+            @endif
+
             @yield('content')
         </main>
     </div>
-    <script type="text/javascript" src="{{ asset('js/mdb/jquery-3.3.1.min.js') }}"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ asset('js/mdb/mdb.min.js') }}"></script>
+    <!-- Popper JS -->
+    <script src="{{ asset('js/mdb/popper.min.js') }}"></script>
+    <!-- JQuery UI -->
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <!-- Slidebars -->
     <script src="{{ asset('js/slidebars/slidebars.min.js') }}"></script>
     <!-- Global Scripts -->
     <script src="{{ asset('js/scripts.js') }}"></script>
+    <!-- MDB Datatables -->
+    <script src="{{ asset('js/mdb/addons/datatables.min.js') }}"></script>
+    @stack('scripts')
 </body>
 </html>
