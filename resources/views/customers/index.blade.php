@@ -12,8 +12,8 @@
         </div>
         <div class="row">
             <div class="col-xl-12">
-                <div class="table-responsive">
-                    <table class="table table-striped white-text">
+                <div class="table-responsive mt-4">
+                    <table class="table table-striped white-text" id="customers_index">
                         <thead style="text-transform: uppercase;">
                             <tr>
                                 <th>ID</th>
@@ -69,4 +69,13 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script>
+            $(function() {
+                $('#customers_index').DataTable({
+                    autoWidth: true
+                })
+            })
+        </script>
+    @endpush
 @endsection
