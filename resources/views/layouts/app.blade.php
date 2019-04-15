@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
     <!-- JQuery UI Theme -->
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.theme.min.css') }}">
+    <!-- Datatables CSS BS4 -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}"/>
+ 
 </head>
 <body>
     @auth
@@ -54,7 +57,7 @@
             @yield('content')
         </main>
     </div>
-    <!-- Scripts -->
+    <!-- Scripts w/ JQuery and BootstrapJS -->
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ asset('js/mdb/mdb.min.js') }}"></script>
@@ -68,6 +71,8 @@
     <script src="{{ asset('js/scripts.js') }}"></script>
     <!-- MDB Datatables -->
     <script src="{{ asset('js/mdb/addons/datatables.min.js') }}"></script>
+    <!-- Datatables JS BS4 -->
+    <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
