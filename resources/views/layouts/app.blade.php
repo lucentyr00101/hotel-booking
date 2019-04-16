@@ -30,13 +30,15 @@
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.theme.min.css') }}">
     <!-- Datatables CSS BS4 -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}"/>
+    <!-- DateTimePicker CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/datetimepicker.css') }}"/>
  
 </head>
 <body>
     @auth
         @include('layouts.inc.slidebar')        
     @endauth
-    <div id="app" canvas="container" class="stylish-color-dark">
+    <div id="app" canvas="container" class="stylish-color-dark" style="position: static !important;">
         @auth
             @include('layouts.inc.navbar')
         @endauth
@@ -53,7 +55,6 @@
                     {{ session()->get('error') }}
                 </div>
             @endif
-
             @yield('content')
         </main>
     </div>
@@ -73,6 +74,9 @@
     <script src="{{ asset('js/mdb/addons/datatables.min.js') }}"></script>
     <!-- Datatables JS BS4 -->
     <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}"></script>
+    <!-- DateTimePicker -->
+    <script type="text/javascript" src="{{ asset('js/datetimepicker.js') }}"></script>
     @stack('scripts')
+    @stack('modals')
 </body>
 </html>

@@ -54,13 +54,13 @@
                                             {{ Form::close() }}
                                         </div>
                                         <div>
-                                            <a href="#" class="btn btn-success btn-sm btn-block">Assign to a room</a>
+                                            <button type="button" class="btn btn-success btn-sm btn-block" data-toggle="modal" data-target="#assignRoom">Assign to a room</button>
                                         </div>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="11" class="text-center">No data available.</td>
+                                    <td colspan="12" class="text-center">No data available.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -70,12 +70,11 @@
         </div>
     </div>
     @push('scripts')
-        <script>
-            $(function() {
-                $('#customers_index').DataTable({
-                    autoWidth: true
-                })
-            })
-        </script>
+        <script src="{{ asset('js/customers/index.js/') }}"></script>
     @endpush
+    <!-- Modal -->
+    @push('modals')
+        @include('customers.assign-to-room-modal')
+    @endpush
+    <!-- End Modal -->
 @endsection

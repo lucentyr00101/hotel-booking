@@ -13,6 +13,8 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/scripts.js', 'public/js')
+   .js('resources/js/customers/index.js', 'public/js/customers')
+   .js('resources/js/customers/assign-to-room-modal.js', 'public/js/customers')
    .sass('resources/sass/app.scss', 'public/css')
    .stylus('resources/styl/styles.styl', 'public/css')
    .stylus('resources/styl/drawer.styl', 'public/css')

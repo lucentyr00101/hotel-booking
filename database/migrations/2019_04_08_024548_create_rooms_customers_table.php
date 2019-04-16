@@ -25,6 +25,8 @@ class CreateRoomsCustomersTable extends Migration
             $table->string('deposit')->nullable();
             $table->string('mode_of_payment');
             $table->string('credit_card_type')->nullable();
+            $table->string('credit_card_number')->nullable();
+            $table->boolean('occupied')->default(0);
             $table->timestamps();
         });
     }
