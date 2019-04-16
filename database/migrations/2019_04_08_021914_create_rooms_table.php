@@ -19,7 +19,6 @@ class CreateRoomsTable extends Migration
             $table->float('rate');
             $table->integer('max_available_rooms')->default(10);
             $table->integer('max_cap');
-            $table->boolean('occupied')->default(0);
             $table->timestamps();
         });
     }

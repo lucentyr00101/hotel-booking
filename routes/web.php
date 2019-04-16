@@ -15,8 +15,9 @@ Route::get('/', 'HomeController@home');
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('users', 'UserController');
-
-Route::resource('customers', 'CustomerController');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('users', 'UserController');
+    Route::resource('customers', 'CustomerController');
+    Route::post('room-assignment', 'CustomerController@assign')->name('room-assignment');
+});

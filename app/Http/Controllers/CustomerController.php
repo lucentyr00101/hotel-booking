@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
+use App\Room;
 
 class CustomerController extends Controller
 {
@@ -15,7 +16,16 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::latest()->get();
-        return view('customers.index')->with('customers', $customers);
+        $rooms = Room::all();
+        $vacant_rooms = collect();
+        foreach($rooms as $room) {
+            if($room->customers->where('pivot.occupied', 0)->count() < $room->max_cap) {
+                $vacant_rooms->push($room);
+            }
+        }
+
+        return view('customers.index')->with('customers', $customers)
+                                      ->with('rooms', $vacant_rooms);
     }
 
     /**
@@ -127,5 +137,9 @@ class CustomerController extends Controller
         $customer->delete();
         
         return redirect()->route('customers.index')->with('success', 'Successfully deleted!');
+    }
+
+    public function assign(Request $request) {
+        dd($request);
     }
 }
