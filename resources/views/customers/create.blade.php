@@ -52,7 +52,9 @@
         <script>
             $(function() {
                 $('#birthday').datepicker({
-                    dateFormat: "MM dd, yy"
+                    dateFormat: "MM dd, yy",
+                    changeMonth: true,
+                    changeYear: true,
                 })
             })
         </script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use Illuminate\Http\Request;
 use App\Room;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
@@ -19,7 +20,7 @@ class CustomerController extends Controller
         $rooms = Room::all();
         $vacant_rooms = collect();
         foreach($rooms as $room) {
-            if($room->customers->where('pivot.occupied', 0)->count() < $room->max_cap) {
+            if($room->customers->where('pivot.occupied', 1)->count() < $room->max_cap) {
                 $vacant_rooms->push($room);
             }
         }
@@ -140,6 +141,21 @@ class CustomerController extends Controller
     }
 
     public function assign(Request $request) {
-        dd($request);
+        $customer = Customer::find($request->customer_id);
+
+        $customer->rooms()->attach($request->room_id, [
+            'datetime_of_arrival' => Carbon::parse($request->arrival),
+            'datetime_of_departure' => Carbon::parse($request->departure),
+            'number_of_guest' => $request->number_of_guest,
+            'mode_of_payment' => $request->mode_of_payment,
+            'credit_card_type' => $request->credit_card_type,
+            'credit_card_number' => $request->card_mumber, 
+            'deposit' => $request->deposit,
+            'occupied' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->back()->with('success', 'Customer assigned to room successfully!');
     }
 }

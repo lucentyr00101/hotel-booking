@@ -9,12 +9,12 @@
             </div>
             {{ Form::open(['url' => route('room-assignment'), 'method' => 'post']) }}
                 <div class="modal-body">
-
+                    <input type="hidden" name="customer_id" value="">
                     <label for="room_list">Room:</label>
-                    <select name="room" id="room_list" class="form-control">
+                    <select name="room_id" id="room_list" class="form-control">
                         <option value="" selected disabled>Select one...</option>
                         @foreach ($rooms as $room)
-                            <option value="{{ $room->id }}">{{ $room->type_of_room }} ({{ $room->max_cap - $room->customers->where('pivot.occupied', 0)->count() }} room/s remaining)</option>
+                            <option value="{{ $room->id }}">{{ $room->type_of_room }} ({{ $room->max_cap - $room->customers->where('pivot.occupied', 1)->count() }} room/s remaining)</option>
                         @endforeach
                     </select>
 
