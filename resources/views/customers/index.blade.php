@@ -45,21 +45,20 @@
                                     <td>{{ $customer->email_address }}</td>
                                     <td>{{ $customer->type_of_guest }}</td>
                                     <td>{{ $customer->created_at->format('F d, Y') }}</td>
-                                    <td>{{ $customer->rooms()->where('occupied', 1)->exists() ? $customer->rooms()->where('occupied', 1)->first()->type_of_room : 'N/A' }}</td>
                                     <td>
-                                        <div class="">
-                                            <a href="{{ route('customers.show', ['id' => $customer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                                            <a href="{{ route('customers.edit', ['id' => $customer->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                            {{-- {{ Form::open(['url' => route('customers.destroy', ['id' => $customer->id]), 'method' => 'post', 'class' => 'd-inline']) }}
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-danger btn-sm m-0 black-text"><i class="fas fa-trash"></i></button>
-                                            {{ Form::close() }} --}}
-                                        </div>
-                                        <div>
-                                            @unless ($customer->rooms()->where('occupied', 1)->exists())
-                                                <button type="button" class="btn btn-success btn-sm btn-block" id="toggleAssignModal" data-customer-id="{{ $customer->id }}" data-toggle="modal" data-target="#assignRoom">Assign to a room</button>
-                                            @endunless
-                                        </div>
+                                        @if (!$customer->rooms()->where('occupied', 1)->exists())
+                                            <button type="button" class="btn btn-success btn-sm btn-block" id="toggleAssignModal" data-customer-id="{{ $customer->id }}" data-toggle="modal" data-target="#assignRoom">Assign to a room</button>
+                                        @else
+                                            {{ $customer->rooms()->where('occupied', 1)->first()->type_of_room }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('customers.show', ['id' => $customer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('customers.edit', ['id' => $customer->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                        {{-- {{ Form::open(['url' => route('customers.destroy', ['id' => $customer->id]), 'method' => 'post', 'class' => 'd-inline']) }}
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm m-0 black-text"><i class="fas fa-trash"></i></button>
+                                        {{ Form::close() }} --}}
                                     </td>
                                 </tr>
                             @empty
