@@ -169,14 +169,6 @@ class CustomerController extends Controller
     }
 
     public function checkout($id){
-        $customer = Customer::find($id);
-
-        $room_id = $customer->rooms()->where('occupied', 1)->first();
-
-        $customer->rooms()->updateExistingPivot($room_id, [
-            'occupied' => 0,
-        ]);
-
-        return redirect()->route('invoice.generate', ['pivot_id' => $room_id, 'customer_id' => $customer->id]);
+        return 123;
     }
 }

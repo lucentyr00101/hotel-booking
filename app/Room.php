@@ -18,4 +18,8 @@ class Room extends Model
     public function getCarbonDepartureAttribute() {
         return Carbon::parse($this->pivot->datetime_of_departure)->format('F d, Y h:i:s A');
     }
+
+    public function payments() {
+        return $this->hasMany('App\Payment', 'room_id');
+    }
 }
