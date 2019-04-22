@@ -9,7 +9,7 @@
             </div>
             {{ Form::open(['url' => route('room-assignment'), 'method' => 'post']) }}
                 <div class="modal-body">
-                    <input type="hidden" name="customer_id" value="">
+                    <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                     <label for="room_list">Room:</label>
                     <select name="room_id" id="room_list" class="form-control">
                         <option value="" selected disabled>Select one...</option>

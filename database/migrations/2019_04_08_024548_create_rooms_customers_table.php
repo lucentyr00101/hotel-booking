@@ -19,8 +19,8 @@ class CreateRoomsCustomersTable extends Migration
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->unsignedBigInteger('room_id');
             $table->foreign('room_id')->references('id')->on('rooms');
-            $table->dateTime('datetime_of_arrival');
-            $table->dateTime('datetime_of_departure');
+            $table->timestamp('datetime_of_arrival')->nullable();
+            $table->timestamp('datetime_of_departure')->nullable();
             $table->integer('number_of_guest');
             $table->string('deposit')->nullable();
             $table->string('mode_of_payment');

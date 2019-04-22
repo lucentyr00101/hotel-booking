@@ -13,7 +13,7 @@
                             <input type="text" id="first_name" name="first_name" class="form-control" required>
 
                             <label for="middle_initial">Middle Initial</label>
-                            <input type="text" id="middle_initial" name="middle_initial" class="form-control" required>
+                            <input type="text" id="middle_initial" name="middle_initial" class="form-control">
 
                             <label for="last_name">Last Name</label>
                             <input type="text" id="last_name" name="last_name" class="form-control" required>

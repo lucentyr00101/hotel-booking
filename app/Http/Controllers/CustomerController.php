@@ -80,7 +80,16 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return view('customers.show')->with('customer', $customer);
+        $rooms = Room::all();
+        $vacant_rooms = collect();
+        foreach($rooms as $room) {
+            if($room->customers->where('pivot.occupied', 1)->count() < $room->max_cap) {
+                $vacant_rooms->push($room);
+            }
+        }
+        
+        return view('customers.show')->with('customer', $customer)
+                                     ->with('rooms', $vacant_rooms);
     }
 
     /**
@@ -149,13 +158,25 @@ class CustomerController extends Controller
             'number_of_guest' => $request->number_of_guest,
             'mode_of_payment' => $request->mode_of_payment,
             'credit_card_type' => $request->credit_card_type,
-            'credit_card_number' => $request->card_mumber, 
+            'credit_card_number' => $request->card_number,
             'deposit' => $request->deposit,
             'occupied' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
-        return redirect()->back()->with('success', 'Customer assigned to room successfully!');
+        return redirect()->route('customers.show', ['id' => $customer->id])->with('success', 'Customer assigned to room successfully!');
+    }
+
+    public function checkout($id){
+        $customer = Customer::find($id);
+
+        $room_id = $customer->rooms()->where('occupied', 1)->first();
+
+        $customer->rooms()->updateExistingPivot($room_id, [
+            'occupied' => 0,
+        ]);
+
+        return redirect()->route('invoice.generate', ['pivot_id' => $room_id, 'customer_id' => $customer->id]);
     }
 }
