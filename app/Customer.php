@@ -22,4 +22,9 @@ class Customer extends Model
     public function payments() {
         return $this->hasMany('App\Payment', 'customer_id');
     }
+
+    public function getCurrentRoomAttribute() {
+        //also returns pivot data
+        return $this->rooms()->where('occupied', 1)->first();
+    }
 }

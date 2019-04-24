@@ -19,6 +19,9 @@ class CreatePaymentsTable extends Migration
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers');
+            $table->unsignedBigInteger('rooms_customers_id');
+            $table->foreign('rooms_customers_id')->references('id')->on('rooms_customers')->onDelete('cascade');
+            $table->string('payment_number')->unique();
             $table->integer('days');
             $table->float('amount_paid');
             $table->float('change');

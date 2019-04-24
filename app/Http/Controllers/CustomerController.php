@@ -168,7 +168,26 @@ class CustomerController extends Controller
         return redirect()->route('customers.show', ['id' => $customer->id])->with('success', 'Customer assigned to room successfully!');
     }
 
-    public function checkout($id){
-        return 123;
+    public function checkout(Customer $customer){
+        //change occupied to 0
+        // $customer->rooms()->updateExistingPivot($customer->currentRoom->id, [
+        //     'occupied' => 0
+        // ]);
+        $data                 = new \stdClass();
+        $data->number_of_days = $this->compute_days($customer);
+
+        return view('payments.create')->with('customer', $customer)
+                                      ->with('data', $data);
+    }
+
+    private function compute_days($customer) {
+        $start_date = Carbon::parse($customer->currentRoom->pivot->datetime_of_arrival)->format('Y-m-d');
+        $end_date   = Carbon::parse($customer->currentRoom->pivot->datetime_of_departure)->format('Y-m-d');
+        // calulating the difference in timestamps 
+        $diff = strtotime($start_date) - strtotime($end_date);
+        
+        // 1 day = 24 hours 
+        // 24 * 60 * 60 = 86400 seconds
+        return ceil(abs($diff / 86400));
     }
 }
