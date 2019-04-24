@@ -9,29 +9,45 @@
                     {{ Form::open(['url' => route('customers.store'), 'method' => 'post']) }}
                         <div class="card-body">
 
-                            <label for="first_name">First Name</label>
-                            <input type="text" id="first_name" name="first_name" class="form-control" required>
+                            <div class="md-form">
+                                <label for="first_name">First Name</label>
+                                <input type="text" id="first_name" name="first_name" class="form-control" required>
+                            </div>
 
-                            <label for="middle_initial">Middle Initial</label>
-                            <input type="text" id="middle_initial" name="middle_initial" class="form-control" required>
+                            <div class="md-form">
+                                <label for="middle_initial">Middle Initial</label>
+                                <input type="text" id="middle_initial" name="middle_initial" class="form-control">
+                            </div>
 
-                            <label for="last_name">Last Name</label>
-                            <input type="text" id="last_name" name="last_name" class="form-control" required>
+                            <div class="md-form">
+                                <label for="last_name">Last Name</label>
+                                <input type="text" id="last_name" name="last_name" class="form-control" required>
+                            </div>
 
-                            <label for="company">Company</label>
-                            <input type="text" id="company" name="company" class="form-control" required>
+                            <div class="md-form">
+                                <label for="company">Company</label>
+                                <input type="text" id="company" name="company" class="form-control" required>
+                            </div>
 
-                            <label for="birthday">Birthday</label>
-                            <input type="text" id="birthday" name="birthday" class="form-control" required>
+                            <div class="md-form">
+                                <label for="birthday">Birthday</label>
+                                <input type="text" id="birthday" name="birthday" class="form-control" required>
+                            </div>
 
-                            <label for="contact_number">Contact Number</label>
-                            <input type="text" id="contact_number" name="contact_number" class="form-control" required>
+                            <div class="md-form">
+                                <label for="contact_number">Contact Number</label>
+                                <input type="text" id="contact_number" name="contact_number" class="form-control" required>
+                            </div>
 
-                            <label for="mailing_address">Mailing Address</label>
-                            <input type="text" id="mailing_address" name="mailing_address" class="form-control" required>
+                            <div class="md-form">
+                                <label for="mailing_address">Mailing Address</label>
+                                <input type="text" id="mailing_address" name="mailing_address" class="form-control" required>
+                            </div>
 
-                            <label for="email_address">Email Address</label>
-                            <input type="text" id="email_address" name="email_address" class="form-control" required>
+                            <div class="md-form">
+                                <label for="email_address">Email Address</label>
+                                <input type="text" id="email_address" name="email_address" class="form-control" required>
+                            </div>
 
                             <label for="guest_type">Guest Type</label>
                             <select name="guest_type" id="guest_type" class="browser-default custom-select" required>

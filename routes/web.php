@@ -20,4 +20,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', 'UserController');
     Route::resource('customers', 'CustomerController');
     Route::post('room-assignment', 'CustomerController@assign')->name('room-assignment');
+    Route::get('/checkout/{customer}', 'CustomerController@checkout')->name('checkout');
+    Route::group(['prefix' => '/invoice'], function() {
+        Route::get('generate/{pivot_id}/c/{customer_id}', 'InvoiceController@generate')->name('invoice.generate');
+    });
+    Route::post('/payment/{customer}', 'PaymentController@create')->name('payment.create');
 });
