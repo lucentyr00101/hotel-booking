@@ -192,9 +192,12 @@ class CustomerController extends Controller
     }
 
     public function check_out_list() {
-        $customers = Customer::has('rooms')->get();
+        $customers = Customer::whereHas('rooms', function($q) {
+            $q->where('occupied', 1);
+        })->get();
         $rooms = Room::all();
         $vacant_rooms = collect();
+
         foreach($rooms as $room) {
             if($room->customers->where('pivot.occupied', 1)->count() < $room->max_cap) {
                 $vacant_rooms->push($room);

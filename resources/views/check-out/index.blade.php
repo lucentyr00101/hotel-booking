@@ -51,7 +51,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('customers.show', ['id' => $customer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ route('customers.edit', ['id' => $customer->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                        {{-- <a href="{{ route('customers.edit', ['id' => $customer->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a> --}}
                                         {{-- {{ Form::open(['url' => route('customers.destroy', ['id' => $customer->id]), 'method' => 'post', 'class' => 'd-inline']) }}
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-sm m-0 black-text"><i class="fas fa-trash"></i></button>

@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($customer->rooms->sortByDesc('pivot.id') as $item)
+            @forelse ($customer->rooms->sortByDesc('pivot.id')->where('pivot.occupied', 0) as $item)
                 <tr>
                     <td>{{ $item->pivot->id }}</td>
                     <td>{{ $item->type_of_room }}</td>
