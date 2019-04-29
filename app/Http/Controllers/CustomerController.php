@@ -20,7 +20,7 @@ class CustomerController extends Controller
         $rooms = Room::all();
         $vacant_rooms = collect();
         foreach($rooms as $room) {
-            if($room->customers->where('pivot.occupied', 1)->count() < $room->max_cap) {
+            if($room->customers->where('pivot.occupied', 1)->count() < $room->max_available_rooms) {
                 $vacant_rooms->push($room);
             }
         }

@@ -14,7 +14,7 @@
                     <select name="room_id" id="room_list" class="form-control">
                         <option value="" selected disabled>Select one...</option>
                         @foreach ($rooms as $room)
-                            <option value="{{ $room->id }}">{{ $room->type_of_room }} ({{ $room->max_cap - $room->customers->where('pivot.occupied', 1)->count() }} room/s remaining)</option>
+                            <option value="{{ $room->id }}">{{ $room->type_of_room }} ({{ $room->max_available_rooms - $room->customers->where('pivot.occupied', 1)->count() }} room/s remaining)</option>
                         @endforeach
                     </select>
 
