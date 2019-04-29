@@ -26,6 +26,7 @@ class CreatePaymentsTable extends Migration
             $table->float('amount_paid');
             $table->float('change');
             $table->float('subtotal');
+            $table->integer('discount');
             $table->float('total');
             $table->timestamps();
         });

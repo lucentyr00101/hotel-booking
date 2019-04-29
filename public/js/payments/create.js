@@ -93,6 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+/** Mask Functions */
 $(function () {
   $('#amount_paid').mask('Z##,###,###,###,###.00', {
     reverse: true,
@@ -105,27 +106,20 @@ $(function () {
       }
     }
   });
-  computeSubTotal();
+  $('input[name="discount"').mask('###');
 });
+/** Mask Functions */
 
-var computeSubTotal = function computeSubTotal() {
-  var days = parseInt($('#number_of_days').val());
-  var rate = parseFloat(removeCommas($('#room_rate').val()));
-  var subTotal = days * rate;
+/** Auto set value functions */
+
+$(function () {
   $('#subtotal').parent().find('label').addClass('active');
-  $('#subtotal').val(subTotal.toLocaleString());
-  computeTotal(subTotal);
-};
+  $('#subtotal').val(computeSubTotal().toLocaleString());
+  $('#total').val(computeTotal(computeSubTotal()).toLocaleString());
+});
+/** Auto set value functions */
 
-var computeTotal = function computeTotal(subTotal) {
-  var deposit = parseFloat(removeCommas($('#deposit').val()));
-  var total = subTotal * .12 + subTotal - deposit;
-  $('#total').val(total.toLocaleString());
-};
-
-var removeCommas = function removeCommas(number) {
-  return number.replace(/\,/g, '');
-};
+/** Onkeypress functions */
 
 $(function () {
   $('#amount_paid').on('keyup', function () {
@@ -137,8 +131,49 @@ $(function () {
     } else {
       $('#change').val('');
     }
+  }); //autocompute total amount
+
+  $('input[name="discount"]').on('keyup', function () {
+    var val = parseInt($(this).val());
+
+    if (isNaN(val)) {
+      val = 0;
+    }
+
+    var discountedTotal = computeTotal(computeSubTotal(), val);
+    $('#total').val(discountedTotal.toLocaleString());
+  }); //auto set to 0 if value is null
+
+  $('input[name="discount"]').on('blur', function () {
+    var val = parseInt($(this).val());
+
+    if (isNaN(val)) {
+      $(this).val(0);
+    }
   });
 });
+/** Onkeypress functions */
+
+/** Standard Functions */
+
+var computeSubTotal = function computeSubTotal() {
+  var days = parseInt($('#number_of_days').val());
+  var rate = parseFloat(removeCommas($('#room_rate').val()));
+  var subTotal = days * rate;
+  return subTotal;
+};
+
+var computeTotal = function computeTotal(subTotal) {
+  var discount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var deposit = parseFloat(removeCommas($('#deposit').val()));
+  var total = subTotal * .12 + subTotal - deposit;
+  total = total - total * (discount / 100);
+  return total;
+};
+
+var removeCommas = function removeCommas(number) {
+  return number.replace(/\,/g, '');
+};
 
 var computeChange = function computeChange(total, paid) {
   return (paid - total).toLocaleString();

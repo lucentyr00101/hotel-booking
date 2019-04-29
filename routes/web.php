@@ -24,5 +24,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => '/invoice'], function() {
         Route::get('generate/{pivot_id}/c/{customer_id}', 'InvoiceController@generate')->name('invoice.generate');
     });
-    Route::post('/payment/{customer}', 'PaymentController@create')->name('payment.create');
+    Route::post('/payment/{customer}', 'PaymentController@store')->name('payment.create');
 });
