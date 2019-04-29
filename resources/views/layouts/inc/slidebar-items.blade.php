@@ -1,7 +1,7 @@
 <nav id="menu" class="sidebar" style="oveflow-y: auto;">
     <ul>
         <li>
-            <a href="#" class="">Dashboard</a>
+            <a href="{{ url('/') }}" class="">Dashboard</a>
         </li>
         <li>
             <a href="#"><i class="fas fa-user"></i> Customers<i class="fa fa-caret-down"></i></a>
@@ -12,7 +12,7 @@
         </li>
         <li><a href="#"><i class="fas fa-credit-card"></i> Room List</a></li>
         <li><a href="#"><i class="fas fa-credit-card"></i> Guest List</a></li>
-        <li><a href="#"><i class="fas fa-credit-card"></i> Check Out</a></li>
+        <li><a href="{{ route('check-out.list') }}"><i class="fas fa-credit-card"></i> Check Out</a></li>
         <li>
             <a href="#"><i class="fas fa-credit-card"></i> Test 1 <i class="fa fa-caret-down"></i></a>
             <ul>

@@ -27,4 +27,12 @@ class Customer extends Model
         //also returns pivot data
         return $this->rooms()->where('occupied', 1)->first();
     }
+
+    public function rooms_customers_pivot() {
+        return $this->hasMany('App\RoomsCustomers', 'customer_id');
+    }
+
+    public function getFullNameAttribute() {
+        return $this->first_name . ' ' . $this->middle_initial . ' ' . $this->last_name;
+    }
 }

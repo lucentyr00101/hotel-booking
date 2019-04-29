@@ -10,9 +10,11 @@ class InvoiceController extends Controller
 {
     public function generate($pivot_id) {
 
-        $data = RoomsCustomers::findOrFail(decrypt($pivot_id));
+        $data                 = RoomsCustomers::findOrFail(decrypt($pivot_id));
+        $data->number_of_days = $this->compute_number_of_days($data);
+        $data->subtotal       = $this->compute_subtotal($data);
 
-        $pdf = app('dompdf.wrapper')->loadView('invoice.generate', ['order' => $data]);
+        $pdf = app('dompdf.wrapper')->loadView('invoice.generate', ['data' => $data]);
 
         $type = 'stream';
 
@@ -23,5 +25,13 @@ class InvoiceController extends Controller
         if ($type == 'download') {
             return $pdf->download('invoice.pdf');
         }
+    }
+
+    private function compute_number_of_days($data) {
+        
+    }
+
+    private function compute_subtotal($data) {
+
     }
 }

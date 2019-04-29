@@ -4,10 +4,7 @@
     <div class="container-fluid white-text">
         <div class="row border-bottom border-white align-items-center">
             <div class="col-xl-6">
-                <h3>Customers Master List</h3>
-            </div>
-            <div class="col-xl-6">
-                <a href="{{ route('customers.create') }}" class="btn btn-elegant float-right"><i class="fas fa-user-plus"></i> Add New</a>
+                <h3>Checked-in Customers</h3>
             </div>
         </div>
         <div class="row">
