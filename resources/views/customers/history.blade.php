@@ -27,7 +27,7 @@
                     <td>{{ $item->pivot->credit_card_type ? $item->pivot->credit_card_type : 'N/A' }}</td>
                     <td>{{ $item->pivot->credit_card_number ? $item->pivot->credit_card_number : 'N/A' }}</td>
                     <td>
-                        <a href="{{ route('invoice.generate', ['pivot_id' => $item->pivot->id, 'customer_id' => $customer->id]) }}" class="btn btn-info btn-sm">Generate</a>
+                        <a href="{{ route('invoice.generate', ['pivot_id' => encrypt($item->pivot->id)]) }}" class="btn btn-info btn-sm">Generate</a>
                     </td>
                 </tr>
             @empty

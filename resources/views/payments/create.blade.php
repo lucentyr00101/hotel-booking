@@ -116,11 +116,11 @@
             <div class="col-xl-8 mx-auto">
                 <h3 class="white-text">Payment</h3>
                 <div class="card">
-                    {{ Form::open(['url' => route('payment.create', ['customer', $customer->id]), 'method' => 'post']) }}
+                    {{ Form::open(['url' => route('payment.create', ['customer' => $customer->id]), 'method' => 'post']) }}
                         <div class="card-body">
                             <div class="md-form">
                                 <label for="">Number of days stayed</label>
-                                <input type="text" id="number_of_days" class="form-control" readonly value="{{ $data->number_of_days }}">
+                                <input type="text" id="number_of_days" class="form-control" readonly value="{{ $data->number_of_days }}" name="days">
                             </div>
                             <div class="md-form input-group">
                                 <div class="input-group-prepend">
@@ -140,9 +140,15 @@
                             </div>
                             <div class="md-form input-group">
                                 <div class="input-group-prepend">
+                                    <span class="input-group-text md-addon" id="material-addon1">Discount: %</span>
+                                </div>
+                                <input type="text" class="form-control" name="discount" value="0">
+                            </div>
+                            <div class="md-form input-group">
+                                <div class="input-group-prepend">
                                     <span class="input-group-text md-addon" id="material-addon1">Total: &#8369;</span>
                                 </div>
-                                <input type="text" class="form-control" readonly id="total">
+                                <input type="text" class="form-control" readonly id="total" name="total">
                             </div>
                             <div class="md-form input-group">
                                 <div class="input-group-prepend">
@@ -154,7 +160,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text md-addon" id="material-addon1">Change: &#8369;</span>
                                 </div>
-                                <input type="text" class="form-control" readonly id="change">
+                                <input type="text" class="form-control" readonly id="change" name="change">
                             </div>
                             <input type="submit" value="Proceed" class="btn btn-primary">
                         </div>

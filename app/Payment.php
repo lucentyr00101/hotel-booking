@@ -15,7 +15,7 @@ class Payment extends Model
     }
 
     public function invoices() {
-        return $this->hasMany('App\Invoce', 'payment_id');
+        return $this->hasMany('App\Invoice', 'payment_id');
     }
 
     public function rooms_customers() {
