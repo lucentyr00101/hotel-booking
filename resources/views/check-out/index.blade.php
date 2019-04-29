@@ -4,10 +4,7 @@
     <div class="container-fluid white-text">
         <div class="row border-bottom border-white align-items-center">
             <div class="col-xl-6">
-                <h3>Customers Master List</h3>
-            </div>
-            <div class="col-xl-6">
-                <a href="{{ route('customers.create') }}" class="btn btn-elegant float-right"><i class="fas fa-user-plus"></i> Add New</a>
+                <h3>Checked-in Customers</h3>
             </div>
         </div>
         <div class="row">
@@ -54,7 +51,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('customers.show', ['id' => $customer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ route('customers.edit', ['id' => $customer->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                        {{-- <a href="{{ route('customers.edit', ['id' => $customer->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a> --}}
                                         {{-- {{ Form::open(['url' => route('customers.destroy', ['id' => $customer->id]), 'method' => 'post', 'class' => 'd-inline']) }}
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-sm m-0 black-text"><i class="fas fa-trash"></i></button>

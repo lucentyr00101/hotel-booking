@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Invoice - #123</title>
+    <meta charset="utf-8">
+    <title>Payment {{ $data->payment->payment_number }}</title>
 
     <style type="text/css">
         @page {
@@ -50,14 +50,14 @@
     <table width="100%">
         <tr>
             <td align="left" style="width: 40%;">
-                <h3>John Doe</h3>
+            <h3>{{ $data->customer->fullName }}</h3>
                 <pre>
-Street 15
-123456 City
-United Kingdom
+{{ $data->customer->contact_number }}
+{{ $data->customer->mailing_address }}
+{{ $data->customer->email_address }}
+{{ $data->customer->type_of_guest }}
 <br /><br />
-Date: 2018-01-01
-Identifier: #uniquehash
+Date: {{ date('F d, Y') }}
 Status: Paid
 </pre>
 
@@ -86,43 +86,82 @@ Status: Paid
 <br/>
 
 <div class="invoice">
-    <h3>Invoice specification #123</h3>
+    <h3>Invoice for Payment {{ $data->payment->payment_number }}</h3>
     <table width="100%">
         <thead>
             <tr>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Total</th>
+                <th>Room</th>
+                <th>Date and Time of Arrival</th>
+                <th>Date and Time of Departure</th>
+                <th>Rate</th>
+                <th>No. of days stayed</th>
+                <th>Subtotal</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Item 1</td>
-                <td>1</td>
-                <td align="left">€15,-</td>
+                <td>{{ $data->room->type_of_room }}</td>
+                <td>{{ $data->carbonArrival }}</td>
+                <td>{{ $data->carbonDeparture }}</td>
+                <td>{{ number_format($data->room->rate, 2, '.', ',') }}</td>
+                <td>{{ $data->payment->days }} days</td>
+                <td>{{ number_format($data->payment->subtotal, 2, '.', ',') }}</td>
+            </tr>
+            <tr><td colspan="6"></td></tr>
+            <tr><td colspan="6"></td></tr>
+            <tr><td colspan="6"></td></tr>
+            <tr><td colspan="6"></td></tr>
+            <tr><td colspan="6"></td></tr>
+            <tr><td colspan="6"></td></tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th style="text-align: right;">Tax:</th>
+                <td>12%</td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <th style="text-align: right;">Deposit:</th>
+                <td>{{ $data->deposit ? number_format($data->deposit, 2, '.', ',') : '0.00' }}</td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
+                <th style="text-align: right;">Discount:</th>
+                <td>{{ $data->payment->discount }}%</td>
+            </tr>
+            <tr>
                 <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th style="text-align: right;">Total:</th>
+                <th>{{ number_format($data->payment->total, 2, '.', ',') }}</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th style="text-align: right;">Amount Paid:</th>
+                <th>{{ number_format($data->payment->amount_paid, 2, '.', ',') }}</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th style="text-align: right;">Change:</th>
+                <th>{{ number_format($data->payment->change, 2, '.', ',') }}</th>
             </tr>
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="1"></td>
-                <td align="left">Total</td>
-                <td align="left" class="gray">€15,-</td>
-            </tr>
-        </tfoot>
     </table>
 </div>
 

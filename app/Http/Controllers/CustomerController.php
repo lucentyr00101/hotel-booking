@@ -190,4 +190,21 @@ class CustomerController extends Controller
         // 24 * 60 * 60 = 86400 seconds
         return ceil(abs($diff / 86400));
     }
+
+    public function check_out_list() {
+        $customers = Customer::whereHas('rooms', function($q) {
+            $q->where('occupied', 1);
+        })->get();
+        $rooms = Room::all();
+        $vacant_rooms = collect();
+
+        foreach($rooms as $room) {
+            if($room->customers->where('pivot.occupied', 1)->count() < $room->max_cap) {
+                $vacant_rooms->push($room);
+            }
+        }
+
+        return view('check-out.index')->with('customers', $customers)
+                                      ->with('rooms', $vacant_rooms);
+    }
 }

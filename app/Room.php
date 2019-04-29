@@ -22,4 +22,8 @@ class Room extends Model
     public function payments() {
         return $this->hasMany('App\Payment', 'room_id');
     }
+
+    public function rooms_customers_pivot() {
+        return $this->hasMany('App\RoomsCustomers', 'room_id');
+    }
 }

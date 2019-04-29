@@ -16,7 +16,7 @@ class PaymentController extends Controller
         $payment->rooms_customers_id = $customer->currentRoom->pivot->id;
         $payment->payment_number     = $this->generatePaymentNumber();
         $payment->days               = $request->days;
-        $payment->amount_paid        = $request->days;
+        $payment->amount_paid        = $request->amount_paid;
         $payment->change             = $this->removeComma($request->change);
         $payment->subtotal           = $this->removeComma($request->subtotal);
         $payment->discount           = $request->discount;
