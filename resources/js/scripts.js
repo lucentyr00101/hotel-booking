@@ -20,4 +20,6 @@ $(function() {
             $(this).children('i:last-child').toggleClass('fa-caret-down fa-caret-left');
         }
     });
+
+    document.addEventListener('contextmenu', event => event.preventDefault());
 })
