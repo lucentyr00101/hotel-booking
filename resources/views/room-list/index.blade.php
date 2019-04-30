@@ -5,7 +5,7 @@
         <h3 class="white-text">Rooms List</h3>
         <div class="row">
             @foreach ($rooms as $room)
-                <div class="col-xl-3 pb-4">
+                <div class="col-xl-2 pb-4">
                     @forelse ($room->customers as $customer)
                         <!-- Card -->
                         <div class="card">
