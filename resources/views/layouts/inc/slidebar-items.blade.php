@@ -11,16 +11,6 @@
             </ul>
         </li>
         <li><a href="{{ route('rooms.index') }}"><i class="fas fa-credit-card"></i> Room List</a></li>
-        <li><a href="#"><i class="fas fa-credit-card"></i> Guest List</a></li>
         <li><a href="{{ route('check-out.list') }}"><i class="fas fa-credit-card"></i> Check Out</a></li>
-        <li>
-            <a href="#"><i class="fas fa-credit-card"></i> Test 1 <i class="fa fa-caret-down"></i></a>
-            <ul>
-                <li><a href="#">Test 1.1 <i class="fas fa-credit-card float-right"></i></a></li>
-                <li><a href="#">Test 1.2</a></li>
-                <li><a href="#">Test 1.3</a></li>
-                <li><a href="#">Test 1.4</a></li>
-            </ul>
-        </li>
     </ul>
 </nav>

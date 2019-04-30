@@ -82,4 +82,8 @@ class RoomController extends Controller
     {
         //
     }
+
+    public function guest_list(Room $room) {
+        return view('guest-list.list-room-type')->with('room', $room);
+    }
 }

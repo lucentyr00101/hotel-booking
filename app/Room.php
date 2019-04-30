@@ -26,4 +26,8 @@ class Room extends Model
     public function rooms_customers_pivot() {
         return $this->hasMany('App\RoomsCustomers', 'room_id');
     }
+
+    public function getRemainingRoomsAttribute() {
+        return $this->max_available_rooms - $this->customers()->wherePivot('occupied', 1)->count();
+    }
 }
