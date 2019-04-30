@@ -15,7 +15,7 @@ class InvoiceController extends Controller
         $pdf  = PDF::loadView('invoice.generate', ['data' => $data])->setPaper($customPaper, 'landscape');
         $type = 'stream';
         if ($type == 'stream') {
-            return $pdf->stream('invoice.pdf');
+            return $pdf->stream(time().'.pdf');
         }
     
         if ($type == 'download') {
