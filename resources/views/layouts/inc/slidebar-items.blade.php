@@ -10,7 +10,7 @@
                 <li><a href="{{ route('customers.create') }}">Register New Customer <i class="fas fa-user-plus float-right"></i></a></li>
             </ul>
         </li>
-        <li><a href="#"><i class="fas fa-credit-card"></i> Room List</a></li>
+        <li><a href="{{ route('rooms.index') }}"><i class="fas fa-credit-card"></i> Room List</a></li>
         <li><a href="#"><i class="fas fa-credit-card"></i> Guest List</a></li>
         <li><a href="{{ route('check-out.list') }}"><i class="fas fa-credit-card"></i> Check Out</a></li>
         <li>

@@ -14,10 +14,6 @@ class Payment extends Model
         return $this->belongsTo('App\Room', 'room_id');
     }
 
-    public function invoices() {
-        return $this->hasMany('App\Invoice', 'payment_id');
-    }
-
     public function rooms_customers() {
         return $this->belongsTo('App\RoomsCustomers',' rooms_customers_id');
     }
