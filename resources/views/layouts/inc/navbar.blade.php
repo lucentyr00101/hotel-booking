@@ -54,16 +54,16 @@
 
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark stylish-color">
     <button class="btn primary-color-dark p-3 button-collapse white-text" id="toggleSidebar"><i class="fas fa-bars"></i></button>
-    <a class="navbar-brand" href="{{ url('/') }}">Navbar</a>
+    <a class="navbar-brand" href="{{ url('/') }}">Menu</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
         aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-        <ul class="navbar-nav mr-auto">
+        {{-- <ul class="navbar-nav mr-auto">
             <li class="nav-item {{ Request::is(['home/*', 'home']) ? 'active' : '' }}">
                 <a class="nav-link" href="#">Home
-                    {{-- <span class="sr-only">(current)</span> --}}
+                    <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -82,7 +82,7 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
-        </ul>
+        </ul> --}}
         <ul class="navbar-nav ml-auto nav-flex-icons">
             <span class="navbar-text white-text" style="border-right: 1px solid #fff; padding-right: 20px;">
                 {{ Auth::user()->name }}

@@ -25,4 +25,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/invoice/generate/{pivot_id}', 'InvoiceController@generate')->name('invoice.generate');
     Route::post('/payment/{customer}', 'PaymentController@store')->name('payment.create');
     Route::get('/check-out-list', 'CustomerController@check_out_list')->name('check-out.list');
+    Route::get('/guest-list/{room}', 'RoomController@guest_list')->name('guest-list-room-type');
 });
