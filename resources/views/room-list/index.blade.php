@@ -13,7 +13,8 @@
                             <!-- Title -->
                             <h4 class="card-title"><a>{{ $room->type_of_room }} ({{ $room->remainingRooms }} room/s left)</a></h4>
                             <!-- Text -->
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">Rate: &#8369; {{ number_format($room->rate, 2, '.', ',') }}</p>
+                            <p class="card-text">Max Capacity: {{ $room->max_cap }}</p>
                             <!-- Button -->
                             <a href="{{ route('guest-list-room-type', ['room' => $room->id]) }}" class="btn btn-primary">View Guest List</a>
                         </div>
