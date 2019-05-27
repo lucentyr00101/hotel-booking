@@ -19,7 +19,7 @@ class InvoiceController extends Controller
         }
     
         if ($type == 'download') {
-            return $pdf->download('invoice.pdf');
+            return $pdf->download(time().'.pdf');
         }
     }
 }

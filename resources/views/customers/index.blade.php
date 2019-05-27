@@ -16,34 +16,27 @@
                     <table class="table table-striped white-text" id="customers_index">
                         <thead style="text-transform: uppercase;">
                             <tr>
-                                <th>ID</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Middle Initial</th>
                                 <th>Company</th>
-                                <th>Birthday</th>
                                 <th>Contact Number</th>
-                                <th>Mailing Address</th>
                                 <th>Email Address</th>
-                                <th>Guest Type</th>
                                 <th>Date Registered</th>
                                 <th>Assigned Room</th>
+                                <th>Assigned Flight</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($customers as $customer)
                                 <tr>
-                                    <td>{{ $customer->id }}</td>
                                     <td>{{ $customer->first_name }}</td>
                                     <td>{{ $customer->last_name }}</td>
                                     <td>{{ $customer->middle_initial }}</td>
                                     <td>{{ $customer->company }}</td>
-                                    <td>{{ $customer->birthday }}</td>
                                     <td>{{ $customer->contact_number }}</td>
-                                    <td>{{ $customer->mailing_address }}</td>
                                     <td>{{ $customer->email_address }}</td>
-                                    <td>{{ $customer->type_of_guest }}</td>
                                     <td>{{ $customer->created_at->format('F d, Y') }}</td>
                                     <td>
                                         @if (!$customer->rooms()->where('occupied', 1)->exists())
@@ -51,6 +44,9 @@
                                         @else
                                             {{ $customer->rooms()->where('occupied', 1)->first()->type_of_room }}
                                         @endif
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-sm btn-block" id="toggleAssignModal" data-customer-id="{{ $customer->id }}" data-toggle="modal" data-target="#assignFlight">Assign to a tour</button>
                                     </td>
                                     <td>
                                         <a href="{{ route('customers.show', ['id' => $customer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
@@ -78,6 +74,7 @@
     <!-- Modal -->
     @push('modals')
         @include('customers.assign-to-room-modal')
+        @include('customers.assign-to-flight-modal')
     @endpush
     <!-- End Modal -->
 @endsection
