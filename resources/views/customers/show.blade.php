@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="{{ $customer->rooms()->where('occupied', 1)->exists() ? 'col-xl-6' : 'mx-auto col-xl-8' }}">
+        <div class="row justify-content-center">
+            <div class="col-xl-4">
                 <h3 class="white-text">Customer Information</h3>
                 <div class="card">
                     <div class="card-body">
@@ -63,7 +63,7 @@
             </div>
 
             @if ($customer->rooms()->where('occupied', 1)->exists())
-                <div class="col-xl-6">
+                <div class="col-xl-4">
                     <h3 class="white-text">Current Booking Information</h3>
                     <div class="card">
                         <div class="card-body">
@@ -111,6 +111,36 @@
                             </div>
                             <div class="form-group">
                                 <a href="{{ route('checkout', ['customer' => $customer->id, ]) }}" class="btn btn-info btn-sm btn-block">Check Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if ($customer->tours()->exists())
+                <div class="col-xl-4">
+                    <h3 class="white-text">Current Tour Information</h3>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="md-form">
+                                <label for="">Tour Name</label>
+                                <input type="text" id="" name="" class="form-control" readonly value="{{ $customer->latestTour->tour_name }}">
+                            </div>
+                            <div class="md-form">
+                                <label for="">Tour Rate</label>
+                                <input type="text" class="form-control" readonly value="&#8369; {{ number_format($customer->latestTour->rate, 2, '.', ',') }}">
+                            </div>
+                            <div class="md-form">
+                                <label for="">Number of Adult Guest/s</label>
+                                <input type="text" class="form-control" readonly value="{{ $customer->latestTour->pivot->number_of_adult_guests }}">
+                            </div>
+                            <div class="md-form">
+                                <label for="">Number of Child Guest/s</label>
+                                <input type="text" class="form-control" readonly value="{{ $customer->latestTour->pivot->number_of_child_guests }}">
+                            </div>
+                            <div class="md-form">
+                                <label for="">Total Amount</label>
+                                <input type="text" class="form-control" readonly value="&#8369; {{ number_format($customer->latestTour->pivot->amount, 2, '.', ',') }}">
                             </div>
                         </div>
                     </div>

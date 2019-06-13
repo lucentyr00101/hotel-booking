@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center">
             <div class="col-xl-6 col-sm-12">
-                <h3 class="white-text">Register New Customer</h3>
+                <h3 class="white-text">Edit Customer</h3>
                 <div class="card">
                     {{ Form::open(['url' => route('customers.update', ['id' => $customer->id]), 'method' => 'put']) }}
                         <div class="card-body">

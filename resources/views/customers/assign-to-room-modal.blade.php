@@ -9,9 +9,9 @@
             </div>
             {{ Form::open(['url' => route('room-assignment'), 'method' => 'post']) }}
                 <div class="modal-body">
-                    <input type="hidden" name="customer_id" value="">
+                    <input type="hidden" name="customer_id" value="" id="room">
                     <label for="room_list">Room:</label>
-                    <select name="room_id" id="room_list" class="form-control">
+                    <select name="room_id" id="room_list" class="form-control" required>
                         <option value="" selected disabled>Select one...</option>
                         @foreach ($rooms as $room)
                             <option value="{{ $room->id }}">{{ $room->type_of_room }} ({{ $room->max_available_rooms - $room->customers->where('pivot.occupied', 1)->count() }} room/s remaining)</option>
@@ -25,7 +25,7 @@
                     <input type="text" class="form-control datetimepicker" name="departure" required>
 
                     <label for="number_of_guest">Number of Guest/s:</label>
-                    <input type="text" class="form-control" name="number_of_guest" required>
+                    <input type="text" class="form-control number-input" name="number_of_guest" required>
 
                     <label for="mode_of_payment">Mode of Payment:</label>
                     <select name="mode_of_payment" id="mode_of_payment" class="form-control" required>

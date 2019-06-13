@@ -12,5 +12,6 @@
         </li>
         <li><a href="{{ route('rooms.index') }}"><i class="fas fa-credit-card"></i> Room List</a></li>
         <li><a href="{{ route('check-out.list') }}"><i class="fas fa-credit-card"></i> Check Out</a></li>
+        <li><a href="{{ route('tours.index') }}"><i class="fas fa-credit-card"></i> Tour List</a></li>
     </ul>
 </nav>

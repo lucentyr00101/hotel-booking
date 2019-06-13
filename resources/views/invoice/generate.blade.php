@@ -1,182 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Payment {{ $data->payment->payment_number }}</title>
-
-    <style type="text/css">
-        @page {
-            margin: 0px;
+    <style>
+        p {
+            margin: 0;
+            font-size: 13px;
+            color: #989898;
         }
-        body {
-            margin: 0px;
+        html {
+            margin: 30px 20px;
+            padding: 0px;
         }
-        * {
-            font-family: Verdana, Arial, sans-serif;
+        .text-right {
+            text-align: right;
         }
-        a {
-            color: #fff;
-            text-decoration: none;
-        }
-        table {
-            font-size: x-small;
-        }
-        tfoot tr td {
-            font-weight: bold;
-            font-size: x-small;
-        }
-        .invoice table {
-            margin: 15px;
-        }
-        .invoice h3 {
-            margin-left: 15px;
-        }
-        .information {
-            background-color: #60A7A6;
-            color: #FFF;
-        }
-        .information .logo {
-            margin: 5px;
-        }
-        .information table {
-            padding: 10px;
+        .text-center {
+            text-align: center;
         }
     </style>
-
 </head>
 <body>
-
-<div class="information">
-    <table width="100%">
-        <tr>
-            <td align="left" style="width: 40%;">
-            <h3>{{ $data->customer->fullName }}</h3>
-                <pre>
-{{ $data->customer->contact_number }}
-{{ $data->customer->mailing_address }}
-{{ $data->customer->email_address }}
-{{ $data->customer->type_of_guest }}
-<br /><br />
-Date: {{ date('F d, Y') }}
-Status: Paid
-</pre>
-
-
-            </td>
-            <td align="center">
-                <img src="/path/to/logo.png" alt="Logo" width="64" class="logo"/>
-            </td>
-            <td align="right" style="width: 40%;">
-
-                <h3>CompanyName</h3>
-                <pre>
-                    https://company.com
-
-                    Street 26
-                    123456 City
-                    United Kingdom
-                </pre>
-            </td>
-        </tr>
-
-    </table>
-</div>
-
-
-<br/>
-
-<div class="invoice">
-    <h3>Invoice for Payment {{ $data->payment->payment_number }}</h3>
-    <table width="100%">
-        <thead>
-            <tr>
-                <th>Room</th>
-                <th>Date and Time of Arrival</th>
-                <th>Date and Time of Departure</th>
-                <th>Rate</th>
-                <th>No. of days stayed</th>
-                <th>Subtotal</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ $data->room->type_of_room }}</td>
-                <td>{{ $data->carbonArrival }}</td>
-                <td>{{ $data->carbonDeparture }}</td>
-                <td>{{ number_format($data->room->rate, 2, '.', ',') }}</td>
-                <td>{{ $data->payment->days }} days</td>
-                <td>{{ number_format($data->payment->subtotal, 2, '.', ',') }}</td>
-            </tr>
-            <tr><td colspan="6"></td></tr>
-            <tr><td colspan="6"></td></tr>
-            <tr><td colspan="6"></td></tr>
-            <tr><td colspan="6"></td></tr>
-            <tr><td colspan="6"></td></tr>
-            <tr><td colspan="6"></td></tr>
+    <div style="text-align: center;">
+        <p>Metro Manila College</p>
+        <p>Jordan Plaines Subdivision</p>
+        <p>Novaliches, Quezon City, 1124 Metro Manila</p>
+        <p>(02) 939 1162</p>
+    </div>
+    <div style="margin-top: 50px;">
+        <p>Ref: {{ $data->payment->payment_number }}</p>
+        <p>{{ $data->customer->fullName }}</p>
+        <p>Contact #: {{ $data->customer->contact_number }}</p>
+        <p>{{ now()->format('F d, Y h:i:s A') }}</p>
+    </div>
+    <div style="margin-top: 50px;">
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td>
+                        <p>{{ $data->room->type_of_room }} </p>
+                        <p>@ {{ $data->payment->days }} days</p>
+                        <p>{{ $data->carbonArrival }}</p>
+                        <p>{{ $data->carbonDeparture }}</p>
+                    </td>
+                    <td class="text-right"><p>{{ number_format($data->room->rate, 2, '.', ',') }}</p></td>
+                    <td class="text-right"><p>{{ number_format($data->payment->subtotal, 2, '.', ',') }}</p></td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="width: 100%; margin-top: 30px;">
             <tr>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <th style="text-align: right;">Tax:</th>
-                <td>12%</td>
+                <th class="text-right"><p>Tax:</p></th>
+                <th class="text-right"><p>12%</p></th>
             </tr>
             <tr>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <th style="text-align: right;">Deposit:</th>
-                <td>{{ $data->deposit ? number_format($data->deposit, 2, '.', ',') : '0.00' }}</td>
+                <th class="text-right"><p>Deposit:</p></th>
+                <th class="text-right"><p>-{{ number_format($data->deposit, 2, '.', ',') }}</p></th>
             </tr>
             <tr>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <th style="text-align: right;">Discount:</th>
-                <td>{{ $data->payment->discount }}%</td>
+                <th class="text-right"><p>Discount:</p></th>
+                <th class="text-right"><p>{{ $data->payment->discount }}%</p></th>
             </tr>
             <tr>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <th style="text-align: right;">Total:</th>
-                <th>{{ number_format($data->payment->total, 2, '.', ',') }}</th>
+                <th class="text-right"><p>Total:</p></th>
+                <th class="text-right"><p>{{ number_format($data->payment->total, 2, '.', ',') }}</p></th>
             </tr>
             <tr>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <th style="text-align: right;">Amount Paid:</th>
-                <th>{{ number_format($data->payment->amount_paid, 2, '.', ',') }}</th>
+                <th class="text-right"><p>Amount Paid:</p></th>
+                <th class="text-right"><p>{{ number_format($data->payment->amount_paid, 2, '.', ',') }}</p></th>
             </tr>
             <tr>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <th style="text-align: right;">Change:</th>
-                <th>{{ number_format($data->payment->change, 2, '.', ',') }}</th>
+                <th class="text-right"><p>Change:</p></th>
+                <th class="text-right"><p>{{ number_format($data->payment->change, 2, '.', ',') }}</p></th>
             </tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="information" style="position: absolute; bottom: 0;">
-    <table width="100%">
-        <tr>
-            <td align="left" style="width: 50%;">
-                &copy; {{ date('Y') }} {{ config('app.url') }} - All rights reserved.
-            </td>
-            <td align="right" style="width: 50%;">
-                Company Slogan
-            </td>
-        </tr>
-
-    </table>
-</div>
+        </table>
+    </div>
 </body>
 </html>

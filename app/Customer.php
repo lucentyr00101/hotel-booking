@@ -35,4 +35,12 @@ class Customer extends Model
     public function getFullNameAttribute() {
         return $this->first_name . ' ' . $this->middle_initial . ' ' . $this->last_name;
     }
+
+    public function tours() {
+        return $this->belongsToMany('App\Tour', 'tours_customers', 'customer_id', 'tour_id')->withPivot('number_of_adult_guests', 'number_of_child_guests', 'amount');
+    }
+
+    public function getLatestTourAttribute() {
+        return $this->tours()->latest()->first();
+    }
 }
