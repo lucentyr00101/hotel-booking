@@ -15,7 +15,7 @@ class TourController extends Controller
      */
     public function index()
     {
-        //
+        return view('tours.index')->with('tours', Tour::all());
     }
 
     /**

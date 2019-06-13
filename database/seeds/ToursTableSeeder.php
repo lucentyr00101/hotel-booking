@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Tour;
 use App\TourInclusion;
+use Illuminate\Support\Facades\Schema;
 
 class ToursTableSeeder extends Seeder
 {
@@ -108,7 +109,6 @@ class ToursTableSeeder extends Seeder
                     "Countryside Tour: Digisit Beach, Ermita Hill, Dimutabo Falls and San Luis Falls",
                 ]
             ]
-
         ];
 
         foreach($tours as $tour_solo) {
@@ -118,6 +118,7 @@ class ToursTableSeeder extends Seeder
             $tour->rate           = $tour_solo['rate'];
             $tour->save();
 
+            $inclusions = [];
             foreach($tour_solo['inclusions'] as $inc) {
                 $inclusions[] = new TourInclusion([
                     'item' => $inc

@@ -6,6 +6,7 @@ use App\Customer;
 use Illuminate\Http\Request;
 use App\Room;
 use Carbon\Carbon;
+use App\Tour;
 
 class CustomerController extends Controller
 {
@@ -24,9 +25,11 @@ class CustomerController extends Controller
                 $vacant_rooms->push($room);
             }
         }
+        $tours = Tour::all();
 
         return view('customers.index')->with('customers', $customers)
-                                      ->with('rooms', $vacant_rooms);
+                                      ->with('rooms', $vacant_rooms)
+                                      ->with('tours', $tours);
     }
 
     /**
@@ -206,5 +209,28 @@ class CustomerController extends Controller
 
         return view('check-out.index')->with('customers', $customers)
                                       ->with('rooms', $vacant_rooms);
+    }
+
+    public function tourAssign(Request $request){ 
+        $customer = Customer::find($request->customer_id);
+        $tour = Tour::find($request->tour);
+
+        $customer->tours()->attach($request->tour, [
+            'number_of_adult_guests' => $request->adult_number,
+            'number_of_child_guests' => $request->child_number,
+            'amount' => $this->compute_total_amount($request->adult_number, $request->child_number, $tour->rate)
+        ]);
+
+        return redirect()->route('customers.show', ['id' => $customer->id])->with('success', 'Customer assigned to tour successfully!');
+    }
+
+    private function compute_total_amount($adult, $child, $rate) {
+
+        $total_adult_rate = $adult * $rate;
+        $total_child_rate = $child * $rate * .2;
+
+        $total = $total_adult_rate + $total_child_rate;
+
+        return $total;
     }
 }

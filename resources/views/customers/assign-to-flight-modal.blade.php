@@ -8,7 +8,24 @@
                 </button>
             </div>
             <div class="modal-body">
-                asdas
+                {{ Form::open(['url' => route('tour-assignment'), 'method' => 'post']) }}
+                    <input type="hidden" name="customer_id" id="tour" value="">
+                    <label for="tour">Tour</label>
+                    <select name="tour" id="tour" class="form-control" required>
+                        <option value="" selected disabled>Please select one...</option>
+                        @foreach ($tours as $tour)
+                            <option value="{{ $tour->id }}">{{ $tour->tour_name }} - &#8369;{{ $tour->rate }}</option>
+                        @endforeach
+                    </select>
+
+                    <label for="adult_guests">Number of Adult Guests:</label>
+                    <input type="text" class="form-control number-input" required placeholder="#" name="adult_number">
+
+                    <label for="child_guests">Number of Child Guests:</label>
+                    <input type="text" class="form-control number-input" required placeholder="#" name="child_number">
+
+                    <input type="submit" value="Save" class="btn btn-success">
+                {{ Form::close() }}
             </div>
         </div>
     </div>

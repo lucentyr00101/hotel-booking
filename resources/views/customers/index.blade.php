@@ -23,8 +23,8 @@
                                 <th>Contact Number</th>
                                 <th>Email Address</th>
                                 <th>Date Registered</th>
-                                <th>Assigned Room</th>
-                                <th>Assigned Flight</th>
+                                <th>Hotel Booking</th>
+                                <th>Flight Booking</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -46,7 +46,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-info btn-sm btn-block" id="toggleAssignModal" data-customer-id="{{ $customer->id }}" data-toggle="modal" data-target="#assignFlight">Assign to a tour</button>
+                                        <button type="button" class="btn btn-info btn-sm btn-block" id="toggleTourModal" data-customer-id="{{ $customer->id }}" data-toggle="modal" data-target="#assignFlight">Assign to a tour</button>
                                     </td>
                                     <td>
                                         <a href="{{ route('customers.show', ['id' => $customer->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
@@ -69,6 +69,7 @@
         </div>
     </div>
     @push('scripts')
+        <script src={{ asset('js/jquery.mask.min.js') }}></script>
         <script src="{{ asset('js/customers/index.js/') }}"></script>
     @endpush
     <!-- Modal -->
